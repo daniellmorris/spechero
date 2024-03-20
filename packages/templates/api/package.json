@@ -1,0 +1,23 @@
+{
+  "name": "@spechero/api-template",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@spechero/openapi": "workspace:*",
+    "nodemon": "^3.0.2"
+  },
+  "devDependencies": {
+    "eslint": ">=5.16.0",
+    "eslint-config-prettier": "^9.1.0"
+  }
+}

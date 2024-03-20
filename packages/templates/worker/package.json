@@ -1,0 +1,20 @@
+{
+  "name": "@spechero/worker-template",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@spechero/asyncapi": "workspace:*"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

@@ -1,0 +1,18 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: unless-stopped
+
+  docs:
+    image: nginx:latest
+    ports:
+      - "1080:80" # Map port 80 of the container to port 80 on the host
+    volumes:
+      - ./docs/html/index.html:/usr/share/nginx/html/index.html:ro # Bind mount for static files
+      - ./docs/openapi:/usr/share/nginx/html/openapi:ro # Bind mount for static files
+      # - ./docs/conf/nginx.conf:/etc/nginx/nginx.conf:ro # Bind mount for custom Nginx configuration
+    restart: always
