@@ -1,6 +1,6 @@
 {
-  "short_name": "Elements",
-  "name": "Elements Create React App Template",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
