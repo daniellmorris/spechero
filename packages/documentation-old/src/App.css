@@ -42,7 +42,7 @@
   background-color: #3b4151; /* Swagger UI's default header color */
   padding: 10px 20px;
   box-sizing: border-box;
-  color: white;
+  margin-bottom: 0px;
 }
 
 #custom-topbar #custom-select-dropdown {

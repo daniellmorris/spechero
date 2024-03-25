@@ -1,5 +1,5 @@
 import { initSpecHeroHttp } from '@spechero/openapi';
-import * as routes from './routes/index.js';
+import * as routes from './handlers/index.js';
 
 // Initialize the app
 const app = await initSpecHeroHttp({operationHandlers: routes, apiSpecFile: './openapi.yaml'});

@@ -1,6 +1,15 @@
+import apiSpec from '../../../templates/api/openapi.yaml';
+import asyncSpec from '../../../templates/worker/asyncapi.yaml';
+
 export default {
-  specOptions: [
-    { label: "API", value: "./openapi.yaml", type: 'openapi' },
-    { label: "Worker", value: "./asyncapi.yaml", type: 'asyncapi' },
-  ]
+  specOptions: [apiSpec, asyncSpec].map((spec) => ({
+    label: spec.info.title,
+    value: spec.info.title,
+    spec,
+    type: spec.openapi ? 'openapi' : 'asyncapi',
+  })),
+  // [
+  //   { label: "API", value: "./openapi.yaml", spec: apiSpec, type: 'openapi' },
+  //   { label: "Worker", value: "./asyncapi.yaml", spec: asyncSpec ,type: 'asyncapi' },
+  // ]
 }

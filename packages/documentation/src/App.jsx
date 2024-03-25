@@ -1,12 +1,15 @@
 import SwaggerUI from "swagger-ui-react"
-import AsyncApiComponent, { ConfigInterface } from "@asyncapi/react-component";
+import { RedocStandalone } from 'redoc';
+import AsyncApiComponent from "@asyncapi/react-component";
 import "swagger-ui-react/swagger-ui.css"
-import logo from './logo.svg';
+import "@asyncapi/react-component/styles/default.min.css";
+
+// import logo from './logo.svg';
 import './App.css';
 import conf from "./conf";
 import { useState } from "react";
 
-const config: ConfigInterface = {
+const config = {
   "show": {
     "sidebar": true,
     "info": true,
@@ -37,7 +40,8 @@ function App() {
   const option = conf.specOptions.find(item => item.value === selectedValue);
   return (
     <div>
-      <div id="custom-topbar" style={{marginBottom: '20px', textAlign: 'right'}}>
+      <div id="custom-topbar" style={{textAlign: 'right'}}>
+        <span style={{marginRight: '10px'}}>Choose a spec:</span>
         <select id="custom-select-dropdown" value={selectedValue} onChange={onChange}>
           { 
             conf?.specOptions && conf.specOptions.map((item, index) => {
@@ -47,8 +51,11 @@ function App() {
         </select>
       </div>
       { option.type === 'openapi' 
-        ? <SwaggerUI url={selectedValue} /> 
-        : <AsyncApiComponent url={selectedValue} config={config} /> }
+        ? 
+        <RedocStandalone spec={option.spec}/>
+
+        : <AsyncApiComponent schema={option.spec} config={config} />
+      }
     </div>
   );
 }

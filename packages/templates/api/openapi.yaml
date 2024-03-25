@@ -10,7 +10,7 @@ paths:
       summary: Ping endpoint
       x-hero-handler: 
         id: ping
-        action: ping
+        action: pong
       responses:
         '200':
           description: Success
