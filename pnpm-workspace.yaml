@@ -1,4 +1,4 @@
 packages:
-  - "packages/templates/*"
+  - "packages/services/*"
   - "packages/libraries/*"
   - "packages/documentation"
