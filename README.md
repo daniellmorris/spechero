@@ -16,19 +16,12 @@
 
 - Docker and Docker Compose
 - Node.js
-- PNPM
 
 ### Installation
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/daniellmorris/spechero.git
-   ```
-
-1. Install dependencies using PNPM:
-   ```bash
-   cd spec-hero
-   pnpm install
    ```
 
 1. Start the services using Docker Compose:
