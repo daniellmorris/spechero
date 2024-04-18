@@ -42,7 +42,7 @@ channels:
           x-hero-amqp-exchange-binding:
             source: myTopicExchangeEntry
             routingKeys:
-            - #
+            - "#"
             args: {}
         bindingVersion: "0.3.0"
   queueA:

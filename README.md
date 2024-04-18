@@ -17,17 +17,40 @@
 - Docker and Docker Compose
 - Node.js
 
-### Installation
+### Running Project
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/daniellmorris/spechero.git
    ```
 
-1. Start the services using Docker Compose:
+1. Start the docker services in watch mode (Reloads when files change)
    ```bash
-   docker-compose up -d
+   docker compose compose watch
    ```
+1. To view logs run the following in another terminal
+   ```bash
+   docker compose logs -f
+   ```
+
+### Testing Example
+
+1. Run the following to test the api
+   ```bash
+   curl http://localhost:3000/ping
+   ```
+1. Open http://localhost:15671 and type default username/password `guest/guest`. Open the myTopicExchange and publish a message with routingKeyA and the following body
+   ```json
+   {
+     "property1": "test1",
+     "property2": 123
+   }
+   ```
+1. If you ar elooking at logs, you should see some logs come through the worker service
+
+To test the above example, you can do the following
+
+
 
 ## Documentation
 

@@ -130,21 +130,25 @@ export async function initSpecHeroAmqp({connectionSettings, operationHandlers, a
               }
               // Bind the queues to exchanges
               for (const binding of Object.values(queueBindings)) {
-                  proms.push(
-                      channel.bindQueue(
-                          binding.destination, // queue
-                          binding.source, // exchange
-                          binding.routingKey)
-                  );
+                  for (const routingKey of binding?.routingKeys || []) {
+                      proms.push(
+                          channel.bindQueue(
+                              binding.destination, // queue
+                              binding.source, // exchange
+                              routingKey)
+                      );
+                  }
               }
               // Bind the queues to exchanges
               for (const binding of Object.values(exchangeBindings)) {
-                  proms.push(
-                      channel.bindExchange(
-                          binding.destination, 
-                          binding.source, 
-                          binding.routingKey)
-                  );
+                  for (const routingKey of binding?.routingKeys || []) {
+                      proms.push(
+                          channel.bindExchange(
+                              binding.destination, 
+                              binding.source, 
+                              routingKey)
+                      );
+                  }
               }
           } catch (err) {
               console.log(err);
