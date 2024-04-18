@@ -1,8 +1,13 @@
-import SwaggerUI from "swagger-ui-react"
-import { RedocStandalone } from 'redoc';
+// import SwaggerUI from "swagger-ui-react"
+// import "swagger-ui-react/swagger-ui.css"
+import Prism from "prismjs";
+window.global.Prism = Prism;
+import { API } from "@stoplight/elements";
+import "@stoplight/elements/styles.min.css";
+
+// import { RedocStandalone } from 'redoc';
 import AsyncApiComponent from "@asyncapi/react-component";
-import "swagger-ui-react/swagger-ui.css"
-import "@asyncapi/react-component/styles/default.min.css";
+// import "@asyncapi/react-component/styles/default.min.css";
 
 // import logo from './logo.svg';
 import './App.css';
@@ -52,8 +57,11 @@ function App() {
       </div>
       { option.type === 'openapi' 
         ? 
-        <RedocStandalone spec={option.spec}/>
-
+        // <RedocStandalone spec={option.spec}/>
+        <API
+          apiDescriptionDocument={option.spec}
+          router="history"
+        />
         : <AsyncApiComponent schema={option.spec} config={config} />
       }
     </div>

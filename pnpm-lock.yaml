@@ -20,6 +20,9 @@ importers:
       '@stoplight/elements':
         specifier: ^8.1.0
         version: 8.1.0(@babel/core@7.24.1)(react-dom@18.2.0)(react@18.2.0)
+      prismjs:
+        specifier: ^1.29.0
+        version: 1.29.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -111,7 +114,7 @@ importers:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.57.0)
 
-  packages/templates/api:
+  packages/services/api:
     dependencies:
       '@spechero/openapi':
         specifier: workspace:*
@@ -127,7 +130,7 @@ importers:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.57.0)
 
-  packages/templates/worker:
+  packages/services/worker:
     dependencies:
       '@spechero/asyncapi':
         specifier: workspace:*
@@ -2490,6 +2493,7 @@ packages:
 
   /@swagger-api/apidom-ns-json-schema-draft-4@0.97.0:
     resolution: {integrity: sha512-eBMIPxX4huNDGle6TOfSe1kKS1/HvL6w66GWWLFxZW2doCQHMADgjo7j/kVowrXiJtEoMgjBVp3W30WkcwBVug==}
+    requiresBuild: true
     dependencies:
       '@babel/runtime-corejs3': 7.24.1
       '@swagger-api/apidom-ast': 0.97.0

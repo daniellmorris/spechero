@@ -1,0 +1,40 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: unless-stopped
+
+  docs:
+    build:
+      context: ./
+      target: docs
+    ports:
+      - "5173:5173" # Map port 80 of the container to port 80 on the host
+    # volumes:
+    #   - ./
+    #   - ./docs/openapi:/usr/share/nginx/html/openapi:ro # Bind mount for static files
+    #   # - ./docs/conf/nginx.conf:/etc/nginx/nginx.conf:ro # Bind mount for custom Nginx configuration
+    restart: always
+  
+  api:
+    build:
+      context: ./
+      target: api
+    ports:
+      - "3000:3000" # Map port 80 of the container to port 80 on the host
+    restart: always
+  
+  worker:
+    build:
+      context: ./
+      target: worker
+    environment:
+      ASYNC_PROTOCOL: 'amqp'
+      ASYNC_HOST: 'rabbitmq'
+      ASYNC_PORT: 5672
+      ASYNC_USERNAME: 'guest'
+      ASYNC_PASSWORD: 'guest'
+    restart: always

@@ -3,6 +3,9 @@ info:
   title: Plaid Workflow Backend API
   version: 1.0.0
   description: OpenAPI specification for backend API endpoints related to the Plaid workflow
+servers:
+  - url: http://localhost:3000
+    description: Development server 2
 paths:
   # Ping endpoint
   /ping:

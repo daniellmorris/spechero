@@ -12,4 +12,7 @@ export default defineConfig({
     'process.env': {},
     global: {}
   },
+  server: {
+    host: '0.0.0.0'
+  }
 })

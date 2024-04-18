@@ -1,27 +1,12 @@
 # Spec Hero
 
-## Table of Contents
-
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Documentation](#documentation)
-  - [Custom X-Hero-* Tags](#custom-x-hero--tags)
-- [Special Fields and Handlers](#special-fields-and-handlers)
-  - [Understanding `x-hero-handler`](#understanding-x-hero-handler)
-- [AsyncAPI Message Handling with `x-hero-handler`](#asyncapi-message-handling-with-x-hero-handler)
-- [Queue and Exchange Setup](#queue-and-exchange-setup)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Features
 
 - **Monorepo Management with Lerna**
 - **Docker Compose Integration**
 - **PNPM for Package Management**
 - **AsyncAPI and OpenAPI Documentation**
-- **Custom X-Hero-* Tags**
+- **Custom X-Hero-XXX Tags**
 - **AMQP Queue and Exchange Bindings**
 - **Schema-Validated Request Handling**
 
@@ -37,21 +22,16 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/spec-hero.git
+   git clone https://github.com/daniellmorris/spechero.git
    ```
 
-2. Install dependencies using PNPM:
+1. Install dependencies using PNPM:
    ```bash
    cd spec-hero
    pnpm install
    ```
 
-3. Bootstrap the packages with Lerna:
-   ```bash
-   npx lerna bootstrap
-   ```
-
-4. Start the services using Docker Compose:
+1. Start the services using Docker Compose:
    ```bash
    docker-compose up -d
    ```

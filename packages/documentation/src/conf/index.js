@@ -1,5 +1,5 @@
-import apiSpec from '../../../templates/api/openapi.yaml';
-import asyncSpec from '../../../templates/worker/asyncapi.yaml';
+import apiSpec from '../../../services/api/openapi.yaml';
+import asyncSpec from '../../../services/worker/asyncapi.yaml';
 
 export default {
   specOptions: [apiSpec, asyncSpec].map((spec) => ({

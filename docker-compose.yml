@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   rabbitmq:
     image: rabbitmq:3.12-management-alpine
@@ -8,11 +8,72 @@ services:
     restart: unless-stopped
 
   docs:
-    image: nginx:latest
+    build:
+      context: ./
+      target: docs
+      dockerfile: ./Dockerfile.dev
     ports:
-      - "1080:80" # Map port 80 of the container to port 80 on the host
-    volumes:
-      - ./docs/html/index.html:/usr/share/nginx/html/index.html:ro # Bind mount for static files
-      - ./docs/openapi:/usr/share/nginx/html/openapi:ro # Bind mount for static files
-      # - ./docs/conf/nginx.conf:/etc/nginx/nginx.conf:ro # Bind mount for custom Nginx configuration
+      - "5173:5173" 
+    develop:
+      watch:
+        - path: ./packages/services/worker/openapi.yaml
+          action: sync
+          target: ./packages/services/worker/openapi.yaml
+        - path: ./packages/services/api/openapi.yaml
+          action: sync
+          target: ./packages/services/api/openapi.yaml
+        - path: ./packages/documentation
+          action: sync
+          target: ./packages/documentation
+          ignore:
+            - node_modules
+            - package.json
+        - path: ./packages/documentation/package.json
+          action: rebuild
+    # volumes:
+    #   - ./
+    #   - ./docs/openapi:/usr/share/nginx/html/openapi:ro # Bind mount for static files
+    #   # - ./docs/conf/nginx.conf:/etc/nginx/nginx.conf:ro # Bind mount for custom Nginx configuration
     restart: always
+  
+  api:
+    build:
+      context: ./
+      target: api
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - "3000:3000"
+    restart: always
+    develop:
+      watch:
+        - path: ./packages/services/api
+          action: sync+restart
+          target: ./packages/services/api
+          ignore:
+            - node_modules
+            - package.json
+        - path: ./packages/api/package.json
+          action: rebuild
+  
+  worker:
+    build:
+      context: ./
+      target: worker
+      dockerfile: ./Dockerfile.dev
+    environment:
+      ASYNC_PROTOCOL: 'amqp'
+      ASYNC_HOST: 'rabbitmq'
+      ASYNC_PORT: 5672
+      ASYNC_USERNAME: 'guest'
+      ASYNC_PASSWORD: 'guest'
+    restart: always
+    develop:
+      watch:
+        - path: ./packages/services/worker
+          action: sync+restart
+          target: ./packages/worker/api
+          ignore:
+            - node_modules
+            - package.json
+        - path: ./packages/api/package.json
+          action: rebuild
